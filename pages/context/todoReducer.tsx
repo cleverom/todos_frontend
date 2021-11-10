@@ -2,12 +2,19 @@ import {
 
     GET_TODO,
     UPDATE_TODO,
-    CREATE_TODO
 
 } from './types'
 
+interface stateData {
+    data: unknown | never
+}
 
-export const reducer = (state: Record<string, never>, action: Record<string, unknown>) => {
+interface actionTypes {
+    payload: string,
+    type: string
+}
+
+export const reducer = (state: stateData, action: actionTypes) => {
 
     switch (action.type) {
         case GET_TODO:

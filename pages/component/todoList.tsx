@@ -36,7 +36,13 @@ function TodoList() {
 
     const [todoList, setTodo] = React.useState([])
 
-    const context: any = useContext(TodoContext)
+interface Context{
+    data: Record<string, never>[],
+    getTodoData: Object
+
+}
+
+    const context: React.FC<Context> = useContext(TodoContext)
 
     const { getTodoData } = context
 
@@ -48,9 +54,9 @@ function TodoList() {
 
     React.useEffect(() => {
 
-        setTodo(context.data)
+        setTodo(context?.data)
 
-    }, [context.data])
+    }, [context?.data])
 
     const handleClickOpen = (id: string) => {
         setTodoId(id)
@@ -83,7 +89,7 @@ function TodoList() {
         }
         console.log(data)
         const response = await changeTodoStatus(`api/data/status/${id}`, data)
-        const {status, message} = response?.data
+        const { status, message } = response?.data
 
         if (status === false) {
             errors(message)

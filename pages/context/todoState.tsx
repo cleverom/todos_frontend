@@ -5,7 +5,13 @@ import { GET_TODO, UPDATE_TODO } from './types';
 import { getTodo } from '../services/request'
 
 
-const CreateTransactionState = (props: any) => {
+interface Props {
+    error: Error
+    children: React.ReactNode
+    value: string | number | Error
+  }
+
+const CreateTransactionState = (props: Props) => {
     const initialState = {
         data: [],
     };

@@ -4,8 +4,8 @@ import Image from 'next/image'
 import { makeStyles } from '@mui/styles';
 import styles from '../styles/Home.module.css'
 import TodoList from '../pages/component/todoList';
-import Form from '../pages/component/form';
-import Header from '../pages/component/header';
+import Form from './component/todoForm';
+import Header from './component/todoHeader';
 
 const useStyles = makeStyles({
   root: {

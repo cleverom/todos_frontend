@@ -67,7 +67,7 @@ function form() {
                 todo: Yup.string().min(3, 'todo is too short').max(200, 'todo is too long'),
                 dueDate: Yup.date(),
             })}
-            onSubmit={async (data: Record<string, unknown>, { resetForm }) => {
+            onSubmit={async (data: Record<string, never>, { resetForm }) => {
                 console.log(data)
                 const response: any = await createTodo('api/data/todo', data)
                 const { status, message } = response.data
