@@ -1,8 +1,26 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import Todo from './index'
+import { makeStyles } from '@mui/styles';
+import CreateTransactionState from './context/todoState'
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+const useStyles = makeStyles({
+  body:{
+    backgroundColor: "red"
+  }
+
+})
+
+function MyApp() {
+
+  const classes = useStyles()
+
+  return (
+    <CreateTransactionState>
+
+    <div className={classes.body}>
+      <Todo />
+    </div>
+    </CreateTransactionState>
+  )
 }
 
 export default MyApp
