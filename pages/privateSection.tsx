@@ -3,9 +3,7 @@ import { makeStyles } from '@mui/styles';
 import TodoList from '../component/todoList';
 import Form from '../component/todoForm';
 import Header from '../component/todoHeader';
-import PrivateSection from './privateSection'
-import Login from './todoLogin'
-import {parseCookies} from '../services/request'
+import { parseCookies } from "../services/request"
 
 const useStyles = makeStyles({
   root: {
@@ -18,21 +16,17 @@ const useStyles = makeStyles({
   }
 });
 
-
-
+const cookies = parseCookies()
 
  const Home: NextPage = () => {
-  const cookies = parseCookies();
-  const cookie = cookies?.token;
-  console.log(cookie, cookies);
-  
-  if (!cookie) {
-    return <Login />;
-  }
   const classes = useStyles();
   return (
       <div className={classes.root}>
-          <PrivateSection />
+          <Header />
+          <div className={classes.form}>
+          <Form />
+          </div>
+          <TodoList />
       </div>
   
   )

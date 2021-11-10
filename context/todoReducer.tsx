@@ -2,11 +2,12 @@ import {
 
     GET_TODO,
     UPDATE_TODO,
+    LOGIN,
 
 } from './types'
 
 interface stateData {
-    data: unknown | never
+    data: unknown | any
 }
 
 interface actionTypes {
@@ -27,7 +28,8 @@ export const reducer = (state: stateData, action: actionTypes) => {
             return {
                 ...state,
                 data: action.payload
-            };
+            }
+        
 
         default:
     }

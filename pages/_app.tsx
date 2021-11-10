@@ -1,25 +1,33 @@
-import Todo from './index'
 import { makeStyles } from '@mui/styles';
-import CreateTransactionState from './context/todoState'
+import CreateTodoState from '../context/todoState'
+import { CookiesProvider } from "react-cookie"
+
+import { AppProps } from 'next/app';
+
 
 const useStyles = makeStyles({
   body:{
-    backgroundColor: "red"
+    // backgroundColor: "white",
+    // height: '100vh'
   }
 
 })
 
-function MyApp() {
+function MyApp({Component, pageProps}: AppProps) {
 
   const classes = useStyles()
 
+
   return (
-    <CreateTransactionState>
+    <CookiesProvider>
+
+    <CreateTodoState error={undefined}  value={''}>
 
     <div className={classes.body}>
-      <Todo />
+     <Component {...pageProps} />
     </div>
-    </CreateTransactionState>
+    </CreateTodoState>
+    </CookiesProvider>
   )
 }
 
