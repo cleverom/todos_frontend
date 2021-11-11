@@ -1,14 +1,14 @@
 import TodoContext from './todocontext'
 import { reducer } from './todoReducer';
-import { useReducer, useEffect } from 'react';
+import { useReducer } from 'react';
 import { GET_TODO} from './types';
 import { getTodo } from '../services/request'
 
 
 interface Props {
-    error: Error
+    
     children: React.ReactNode
-    value: string | number | Error
+    
   }
 
 const CreateTransactionState = (props: Props) => {
@@ -30,8 +30,8 @@ const CreateTransactionState = (props: Props) => {
                     payload: data,
                 });
 
-            } catch (error: any) {
-                console.log(error.message);
+            } catch (err: unknown) {
+                return err
             }
 
         };

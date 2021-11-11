@@ -1,8 +1,6 @@
 import React, { useReducer } from 'react'
-import { Grid, Paper, Avatar, TextField, Button, Typography, Link } from '@mui/material'
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { Grid, Paper, TextField, Button, Typography } from '@mui/material'
 import SignUp from '../component/todoSignup'
-import { reducer } from '../context/todoReducer';
 import { userLogin } from '../services/request';
 import { errors, success } from '../services/swal_alert';
 import { useCookies } from "react-cookie"
@@ -11,11 +9,9 @@ import { useRouter } from "next/router";
 
 const Login = () => {
     const paperStyle = { padding: 20, height: '70vh', width: 380, margin: "88px auto" }
-    // const avatarStyle = { marginTop: '10rem' }
     const btnstyle = { margin: '3rem 0' }
     const textstyle = { margin: '4rem 0' }
     const signText = { color: 'blue', cursor: 'pointer' }
-    const h = { color: 'blue', textAlign: 'center' }
 
     const states = {
         email: "",
@@ -77,17 +73,14 @@ const Login = () => {
 
 
 
-
-
-
     return (
         <>
             <Grid >
                 <Paper elevation={10} style={paperStyle}>
-                    {/* <Grid style={avatarStyle}> */}
+
                     <Typography variant="h5" align='center' >EukaPay Task Management</Typography>
-                    <h2 style={h}>Sign In</h2>
-                    {/* </Grid> */}
+                    <h2 style={{color: 'blue', textAlign: 'center'}}>Sign In</h2>
+
                     <TextField label='Email' placeholder='Enter email' style={textstyle} onChange={handleChange} name="email" fullWidth required />
                     <TextField label='Password' placeholder='Enter password' onChange={handleChange} name="password" type='password' fullWidth required />
 

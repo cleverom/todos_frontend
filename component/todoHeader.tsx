@@ -31,13 +31,30 @@ const useStyles = makeStyles({
         cursor: 'pointer'
     }
 });
+
+interface Users {
+
+    name: string,
+    id: string,
+    email: string,
+    token: string | never
+
+}
+interface Tokens {
+
+    user: string
+
+}
+
+
 const Header = () => {
     const classes = useStyles();
 
     const cookies = parseCookies();
-    const token: string | any = cookies?.user;
+    console.log(cookies)
+    const token: string | unknown | any   = cookies?.user;
 
-    const user: Record<string, any> = jwt(token)
+    const user: Users = jwt(token)
 
     const first = user.name.split(" ")[0]
     const second = user.name.split(" ")[1]
@@ -61,7 +78,7 @@ const Header = () => {
                 <Toolbar className={classes.toolbar}>
                     <Typography className={classes.heading} variant="h5" align="center">EukaPay Task Management</Typography>
                     <PopupState variant="popover" popupId="demo-popup-popover">
-                        {(popupState: any) => (
+                        {(popupState) => (
                             <div>
                                 <Avatar sx={{ bgcolor: deepPurple[400] }} {...bindTrigger(popupState)}>{`${f}${s}`}</Avatar>
                                 <Popover

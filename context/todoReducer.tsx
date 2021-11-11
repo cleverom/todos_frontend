@@ -2,7 +2,6 @@ import {
 
     GET_TODO,
     UPDATE_TODO,
-    LOGIN,
 
 } from './types'
 

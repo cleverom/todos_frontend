@@ -106,7 +106,7 @@ export async function userSignUp (url: string, data: Record<string, unknown>, ba
 }
 
 
-export function parseCookies(req: { headers: { cookie: any; }; } | undefined) {
+export function parseCookies(req?: { headers: { cookie: string; }; } ) {
     if (typeof window !== "undefined") {
       return cookie.parse(req ? req.headers.cookie || "" : document.cookie);
     }

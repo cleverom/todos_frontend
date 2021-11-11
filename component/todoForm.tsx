@@ -48,6 +48,10 @@ const useStyles = makeStyles({
 
 });
 
+interface dataType {
+    todo: string,
+    dueDate: string,
+}
 
 
 function form() {
@@ -67,13 +71,13 @@ function form() {
                 todo: Yup.string().min(3, 'todo is too short').max(200, 'todo is too long'),
                 dueDate: Yup.date(),
             })}
-            onSubmit={async (data: Record<string, never>, { resetForm }) => {
+            onSubmit={async (data: dataType, { resetForm }) => {
                 console.log(data)
                 if(data.todo === '' || data.dueDate === ''){
                     return errors('please enter a valid todo')
                 }
                 const response: any = await createTodo('api/data/todo', data)
-                const { status, message } = response.data
+                const { status, message } = response?.data
 
                 if (status === false) {
                     return errors(message)

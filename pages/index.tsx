@@ -1,8 +1,5 @@
 import type { NextPage } from 'next'
 import { makeStyles } from '@mui/styles';
-import TodoList from '../component/todoList';
-import Form from '../component/todoForm';
-import Header from '../component/todoHeader';
 import PrivateSection from './privateSection'
 import Login from './todoLogin'
 import {parseCookies} from '../services/request'
@@ -10,7 +7,6 @@ import {parseCookies} from '../services/request'
 const useStyles = makeStyles({
   root: {
       textAlign: "center",
-      // height: "100%"
       backgroundColor: "#050A30"
   },
   form:{

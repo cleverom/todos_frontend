@@ -12,6 +12,10 @@ const useStyles = makeStyles({
 
 })
 
+
+  
+
+
 function MyApp({Component, pageProps}: AppProps) {
 
   const classes = useStyles()
@@ -20,7 +24,7 @@ function MyApp({Component, pageProps}: AppProps) {
   return (
     <CookiesProvider>
 
-    <CreateTodoState error={undefined}  value={''}>
+    <CreateTodoState>
 
     <div className={classes.body}>
      <Component {...pageProps} />
