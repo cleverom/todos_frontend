@@ -36,6 +36,12 @@ function TodoList() {
 
     const [todoList, setTodo] = React.useState([])
 
+interface Context{
+    data: Record<string, unknown>,
+    getTodoData: Object
+
+}
+
     const context: any = useContext(TodoContext)
 
     const { getTodoData } = context
@@ -48,9 +54,9 @@ function TodoList() {
 
     React.useEffect(() => {
 
-        setTodo(context.data)
+        setTodo(context?.data)
 
-    }, [context.data])
+    }, [context?.data])
 
     const handleClickOpen = (id: string) => {
         setTodoId(id)
@@ -83,7 +89,7 @@ function TodoList() {
         }
         console.log(data)
         const response = await changeTodoStatus(`api/data/status/${id}`, data)
-        const {status, message} = response?.data
+        const { status, message } = response?.data
 
         if (status === false) {
             errors(message)
@@ -96,7 +102,6 @@ function TodoList() {
 
     }
 
-
     return (
         <>
             <Container className={classes.container} maxWidth="md">
@@ -105,27 +110,26 @@ function TodoList() {
                     <Typography className={classes.type} variant="h6" color="error">No Current Task At The Moment</Typography>
                     :
                     (<List>
-                        {todoList.map((item: any) => {
+                        {todoList.map((item: Record<string, boolean> | any) => {
                             return (
-                                <ListItem className={classes.items} key={item.id} button>
+                                <ListItem className={classes.items} key={item?.id} button>
                                     <ListItemIcon >
                                         <Checkbox
                                             className={classes.items}
-                                            key={item.id}
-                                            checked={item.done}
-                                            onClick={() => changeStatus(item.done, item.id)}
-                                            // onChange={(e)=>handleChange(item.id, e)}
+                                            key={item?.id}
+                                            checked={item?.done}
+                                            onClick={() => changeStatus(item?.done, item?.id)}
                                             inputProps={{ 'aria-label': 'controlled' }}
                                         />
                                     </ListItemIcon>
 
-                                    <ListItemText primary={item.todo} />
+                                    <ListItemText primary={item?.todo} />
                                     <ListItemSecondaryAction>
                                         <IconButton edge="end" aria-label="edit" >
-                                            <EditIcon className={classes.items} onClick={() => handleClickOpen(item.id)} />
+                                            <EditIcon className={classes.items} onClick={() => handleClickOpen(item?.id)} />
                                         </IconButton>
                                         <IconButton edge="end" aria-label="delete" >
-                                            <DeleteIcon className={classes.items} onClick={() => deleteSingleTodo(item.id)} />
+                                            <DeleteIcon className={classes.items} onClick={() => deleteSingleTodo(item?.id)} />
                                         </IconButton>
                                     </ListItemSecondaryAction>
                                 </ListItem>

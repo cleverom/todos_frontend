@@ -1,12 +1,13 @@
 import type { NextPage } from 'next'
 import { makeStyles } from '@mui/styles';
-import PrivateSection from './privateSection'
-import Login from './todoLogin'
-import {parseCookies} from '../services/request'
+import TodoList from '../component/todoList';
+import Form from '../component/todoForm';
+import Header from '../component/todoHeader';
 
 const useStyles = makeStyles({
   root: {
       textAlign: "center",
+      // height: "100%"
       backgroundColor: "#050A30"
   },
   form:{
@@ -15,20 +16,15 @@ const useStyles = makeStyles({
 });
 
 
-
-
  const Home: NextPage = () => {
-  const cookies = parseCookies();
-  const cookie = cookies?.user;
-  console.log(cookie, cookies);
-  
-  if (!cookie) {
-    return <Login />;
-  }
   const classes = useStyles();
   return (
       <div className={classes.root}>
-          <PrivateSection />
+          <Header />
+          <div className={classes.form}>
+          <Form />
+          </div>
+          <TodoList />
       </div>
   
   )
