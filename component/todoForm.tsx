@@ -54,6 +54,7 @@ interface dataType {
 }
 
 
+
 function form() {
     const classes = useStyles()
     const context: any = useContext(TodoContext)
@@ -73,7 +74,7 @@ function form() {
             })}
             onSubmit={async (data: dataType, { resetForm }) => {
                 console.log(data)
-                if(data.todo === '' || data.dueDate === ''){
+                if (data.todo === '' || data.dueDate === '') {
                     return errors('please enter a valid todo')
                 }
                 const response: any = await createTodo('api/data/todo', data)
@@ -170,3 +171,5 @@ function form() {
 
 
 export default form;
+
+

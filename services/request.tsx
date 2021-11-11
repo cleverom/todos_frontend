@@ -6,6 +6,11 @@ import cookie from "cookie"
 
 const {publicRuntimeConfig} = getConfig()
 
+interface dataType {
+    todo: string,
+    dueDate: string,
+}
+
 
 const baseUrl = `${publicRuntimeConfig.apiUrl}`
 
@@ -19,7 +24,7 @@ const setHeader = () => {
     return config;
   };
 
-export async function createTodo (url: string, data: Record<string, unknown>, base: string = baseUrl ){
+export async function createTodo (url: string, data: dataType, base: string = baseUrl ){
 
     try{
         const response = await axios.post(`${base}${url}`, data, setHeader())

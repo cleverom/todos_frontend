@@ -23,6 +23,7 @@
     "@types/react-cookies": "^0.1.0",
     "@types/sinon": "^10.0.6",
     "axios": "^0.24.0",
+    "cypress": "^9.0.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
     "formik": "^2.2.9",
