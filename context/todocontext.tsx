@@ -1,8 +1,13 @@
 import React, {createContext} from 'react';
 
+
+interface dataType {
+    todo: string,
+    dueDate: string
+}
 interface ITodoContextInterface {
-    data: Record<string, never>[],
-    getTodoData: any
+    data: dataType,
+    getTodoData: Object
 }
 
 const TodoContext = createContext<ITodoContextInterface | null>(null)

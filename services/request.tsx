@@ -1,6 +1,8 @@
 import getConfig from 'next/config'
 import axios from 'axios';
 
+import cookie from "cookie"
+
 
 const {publicRuntimeConfig} = getConfig()
 
@@ -80,3 +82,32 @@ export async function changeTodoStatus (url: string, data: Record<string, unknow
         console.error(err)
     }
 }
+export async function userLogin (url: string, data: Record<string, unknown>, base: string = baseUrl ){
+
+    try{
+        const response = await axios.post(`${base}${url}`, data, setHeader())
+        console.log(response)
+        return response
+
+    } catch(err){
+        console.error(err)
+    }
+}
+export async function userSignUp (url: string, data: Record<string, unknown>, base: string = baseUrl ){
+
+    try{
+        const response = await axios.post(`${base}${url}`, data, setHeader())
+        console.log(response)
+        return response
+
+    } catch(err){
+        console.error(err)
+    }
+}
+
+
+export function parseCookies(req?: { headers: { cookie: string; }; } ) {
+    if (typeof window !== "undefined") {
+      return cookie.parse(req ? req.headers.cookie || "" : document.cookie);
+    }
+  }

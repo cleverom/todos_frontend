@@ -1,11 +1,17 @@
 import TodoContext from './todocontext'
 import { reducer } from './todoReducer';
-import { useReducer, useEffect } from 'react';
-import { GET_TODO, UPDATE_TODO } from './types';
+import { useReducer } from 'react';
+import { GET_TODO} from './types';
 import { getTodo } from '../services/request'
 
 
-const CreateTransactionState = (props: any) => {
+interface Props {
+    
+    children: React.ReactNode
+    
+  }
+
+const CreateTransactionState = (props: Props) => {
     const initialState = {
         data: [],
     };
@@ -24,8 +30,8 @@ const CreateTransactionState = (props: any) => {
                     payload: data,
                 });
 
-            } catch (error) {
-                console.log(error.message);
+            } catch (err: unknown) {
+                return err
             }
 
         };
