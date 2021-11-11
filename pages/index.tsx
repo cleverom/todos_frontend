@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 
  const Home: NextPage = () => {
   const cookies = parseCookies();
-  const cookie = cookies?.token;
+  const cookie = cookies?.user;
   console.log(cookie, cookies);
   
   if (!cookie) {

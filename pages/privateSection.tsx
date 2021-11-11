@@ -3,7 +3,6 @@ import { makeStyles } from '@mui/styles';
 import TodoList from '../component/todoList';
 import Form from '../component/todoForm';
 import Header from '../component/todoHeader';
-import { parseCookies } from "../services/request"
 
 const useStyles = makeStyles({
   root: {
@@ -16,7 +15,6 @@ const useStyles = makeStyles({
   }
 });
 
-const cookies = parseCookies()
 
  const Home: NextPage = () => {
   const classes = useStyles();

@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react'
+import React, { useReducer } from 'react'
 import { Grid, Paper, Avatar, TextField, Button, Typography, Link } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import SignUp from '../component/todoSignup'
@@ -22,7 +22,7 @@ const Login = () => {
         password: ""
 
     }
-    
+
     const router = useRouter();
     const [open, setOpen] = React.useState(false);
     const [loginData, setLoginData] = React.useState(states);
@@ -50,29 +50,32 @@ const Login = () => {
 
     async function login() {
         const response = await userLogin('api/login', loginData)
-        const {status, token} = response?.data
+        const { status, token } = response?.data
 
-        if(status === false){
+        if (status === false) {
             return errors('login failed')
         }
         setCookie("user", token, {
             path: "/",
             maxAge: 3600, // Expires after 1hr
             sameSite: true,
-          })
 
-        //   if (status === true) {
-          
-            router.push('/privateSection');
-        
-        //   }
+        })
+
+        if (!token) {
+
+            router.push('/todoLogin');
+
+        }
+
+        router.push('/privateSection')
 
         success('welcome to your todo page')
 
         console.log(response)
     }
 
-    console.log(loginData)
+
 
 
 
@@ -82,17 +85,17 @@ const Login = () => {
             <Grid >
                 <Paper elevation={10} style={paperStyle}>
                     {/* <Grid style={avatarStyle}> */}
-                        <Typography variant="h5" align='center' >EukaPay Task Management</Typography>
-                        <h2 style={h}>Sign In</h2>
+                    <Typography variant="h5" align='center' >EukaPay Task Management</Typography>
+                    <h2 style={h}>Sign In</h2>
                     {/* </Grid> */}
                     <TextField label='Email' placeholder='Enter email' style={textstyle} onChange={handleChange} name="email" fullWidth required />
                     <TextField label='Password' placeholder='Enter password' onChange={handleChange} name="password" type='password' fullWidth required />
 
                     <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth onClick={login}>Sign in</Button>
 
-                    <Typography style={signText} onClick={handleClickOpen}> Do you have an account ?
+                    <Typography style={signText} onClick={handleClickOpen}> Don't have an account ?
 
-                        <span style={signText}>Sign Up</span>
+                        <span style={signText}> Sign Up</span>
 
                     </Typography>
                 </Paper>

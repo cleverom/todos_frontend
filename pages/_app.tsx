@@ -7,8 +7,7 @@ import { AppProps } from 'next/app';
 
 const useStyles = makeStyles({
   body:{
-    // backgroundColor: "white",
-    // height: '100vh'
+   
   }
 
 })

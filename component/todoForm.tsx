@@ -69,6 +69,9 @@ function form() {
             })}
             onSubmit={async (data: Record<string, never>, { resetForm }) => {
                 console.log(data)
+                if(data.todo === '' || data.dueDate === ''){
+                    return errors('please enter a valid todo')
+                }
                 const response: any = await createTodo('api/data/todo', data)
                 const { status, message } = response.data
 
@@ -134,8 +137,8 @@ function form() {
                                             required
                                             value={values.dueDate}
                                             variant="outlined"
-                                            error={Boolean(touched.todo && errors.todo)}
-                                            helperText={touched.todo && errors.todo}
+                                            error={Boolean(touched.dueDate && errors.dueDate)}
+                                            helperText={touched.dueDate && errors.dueDate}
 
                                         >
 
