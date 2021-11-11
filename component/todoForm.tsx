@@ -62,13 +62,19 @@ interface dataType {
     dueDate: string,
 }
 
+interface ITodoContextInterface {
+    data: dataType[],
+    getTodoData: (data?: dataType) => void
+}
+
 
 
 function form() {
     const classes = useStyles()
-    const context: any = useContext(TodoContext)
+    const context: ITodoContextInterface = useContext(TodoContext)
     const { getTodoData } = context
 
+    console.log(context)
 
     return (
         <Formik
@@ -76,6 +82,7 @@ function form() {
             initialValues={{
                 todo: '',
                 dueDate: '',
+                
             }}
             validationSchema={Yup.object().shape({
                 todo: Yup.string().min(3, 'todo is too short').max(200, 'todo is too long'),
@@ -86,18 +93,15 @@ function form() {
                 if (data.todo === '' || data.dueDate === '') {
                     return errors('please enter a valid todo')
                 }
-                const response: any = await createTodo('api/data/todo', data)
+                const response = await createTodo('api/data/todo', data)
                 const { status, message } = response?.data
 
                 if (status === false) {
                     return errors(message)
                 }
-
                 success(message)
                 resetForm({ data: '' })
                 getTodoData()
-
-
 
             }}
         >{
@@ -166,17 +170,14 @@ function form() {
 
                             </CardContent>
                             <Box display='flex' justifyContent='center' p={2}>
-                                <Button color='primary' data-cy="btn" className={classes.createButton} variant="contained" type='submit' disabled={isSubmitting}>
+                                <Button color='primary' data-cy="btn" variant="contained" type='submit' disabled={isSubmitting}>
                                     Create Todo
                                 </Button>
                             </Box>
-
                         </Card>
-
                     </form>
                 )
             }
-
         </Formik>
     )
 }

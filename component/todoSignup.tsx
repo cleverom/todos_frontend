@@ -7,7 +7,14 @@ import ClearIcon from '@mui/icons-material/Clear';
 import { userSignUp } from '../services/request';
 import { errors, success } from '../services/swal_alert';
 
-const Login = (props: any) => {
+
+interface ITodoContextInterface {
+    open: boolean,
+    handleClickOpen: () => void
+    handleClose: () => void; 
+}
+
+const Signup = (props: ITodoContextInterface) => {
 
     const state = {
         name: "",
@@ -83,4 +90,4 @@ const Login = (props: any) => {
     )
 }
 
-export default Login
+export default Signup

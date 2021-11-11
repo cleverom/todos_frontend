@@ -9,11 +9,30 @@ import DialogTitle from '@mui/material/DialogTitle';
 import FormControl from '@mui/material/FormControl';
 import TodoContext from '../context/todocontext'
 import { updateSingleTodo, getTodo } from '../services/request';
-import {success, errors} from '../services/swal_alert'
+import { success, errors } from '../services/swal_alert'
 
-export default function DialogSelect(props: any) {
-    const { handleClickOpen, open, handleClose, todoId } = props;
-    const context: any = React.useContext(TodoContext)
+
+interface ITodoContextInterface {
+    open: boolean,
+    handleClickOpen: (id: string) => void;
+    handleClose:  (reason?: string | undefined) => void,
+    todoId: string,
+}
+
+interface dataType {
+    todo: string,
+    dueDate: string,
+}
+
+interface ITodoContext {
+    data: dataType[],
+    getTodoData: (data?: dataType) => void
+}
+
+
+export default function DialogSelect(props: ITodoContextInterface) {
+    const { open, handleClose, todoId } = props;
+    const context: ITodoContext = React.useContext(TodoContext)
     const state = {
         todo: '',
         dueDate: ''
@@ -27,7 +46,7 @@ export default function DialogSelect(props: any) {
         const data = response?.data
         setTodo(data)
     }
-   
+
 
     React.useEffect(() => {
         getSingleTodo()
@@ -44,44 +63,38 @@ export default function DialogSelect(props: any) {
 
     async function updateTodo() {
         const response = await updateSingleTodo(`api/data/todo/${todoId}`, newTodo)
-        const {status, message} = response?.data
+        const { status, message } = response?.data
 
-        if(status === false){
+        if (status === false) {
             errors(message)
         }
 
         success(message)
         handleClose()
         getTodoData()
-        console.log(response)
+        
 
     }
 
 
     return (
         <div>
-            
+
             <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
                 <DialogTitle>Update todo task</DialogTitle>
                 <DialogContent>
                     <Box component="form" sx={{ display: 'flex', flexWrap: 'wrap' }}>
                         <FormControl sx={{ m: 1, minWidth: 120 }}>
                             <TextField
-                                // className={classes.todos}
                                 fullWidth
                                 placeholder="Create new task"
                                 label="Enter task"
                                 name="todo"
                                 onChange={handleChange}
-                                // onBlur={handleBlur}
                                 required
                                 value={newTodo.todo}
                                 variant="outlined"
-                            // error={Boolean(touched.todo && errors.todo)}
-                            // helperText={touched.todo && errors.todo}
-
                             >
-
                             </TextField>
                         </FormControl>
                         <FormControl sx={{ m: 1, minWidth: 120 }}>
@@ -92,13 +105,10 @@ export default function DialogSelect(props: any) {
                                 label="Due Date"
                                 name="dueDate"
                                 onChange={handleChange}
-                                // onBlur={handleBlur}
+
                                 required
                                 value={newTodo.dueDate}
                                 variant="outlined"
-                            // error={Boolean(touched.todo && errors.todo)}
-                            // helperText={touched.todo && errors.todo}
-
                             >
 
                             </TextField>

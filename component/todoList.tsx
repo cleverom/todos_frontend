@@ -31,18 +31,24 @@ const useStyles = makeStyles({
 
 function TodoList() {
     const classes = useStyles();
+    interface dataType {
+        todo: string,
+        dueDate: string,
+        id: string,
+        done: boolean
+    }
+    interface ITodoContextInterface {
+        data: dataType[],
+        getTodoData: (data?: dataType) => void
+    }
     const [open, setOpen] = React.useState(false);
     const [todoId, setTodoId] = React.useState('');
 
-    const [todoList, setTodo] = React.useState([])
+    const [todoList, setTodo] = React.useState<dataType[]>([])
 
-interface Context{
-    data: Record<string, unknown>,
-    getTodoData: Object
 
-}
 
-    const context: any = useContext(TodoContext)
+    const context: ITodoContextInterface = useContext(TodoContext)
 
     const { getTodoData } = context
 
@@ -63,7 +69,7 @@ interface Context{
         setOpen(true);
     };
 
-    const handleClose = (event: React.SyntheticEvent<unknown>, reason?: string) => {
+    const handleClose = (reason?: string) => {
         if (reason !== 'backdropClick') {
             setOpen(false);
         }
@@ -110,9 +116,9 @@ interface Context{
                     <Typography className={classes.type} variant="h6" color="error">No Current Task At The Moment</Typography>
                     :
                     (<List>
-                        {todoList.map((item: Record<string, boolean> | any) => {
+                        {todoList.map((item: dataType) => {
                             return (
-                                <ListItem className={classes.items}  key={item?.id} button>
+                                <ListItem className={classes.items} key={item?.id} button>
                                     <ListItemIcon >
                                         <Checkbox
                                             data-cy="check"

@@ -6,7 +6,7 @@ import {
 } from './types'
 
 interface stateData {
-    data: unknown | any
+    data: unknown | never
 }
 
 interface actionTypes {

@@ -29,7 +29,7 @@ const Login = () => {
         setOpen(true);
     };
 
-    const handleClose = (event: React.SyntheticEvent<unknown>, reason?: string) => {
+    const handleClose = (reason?: string) => {
         if (reason !== 'backdropClick') {
             setOpen(false);
         }

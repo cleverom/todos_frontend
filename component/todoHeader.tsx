@@ -40,19 +40,15 @@ interface Users {
     token: string | never
 
 }
-interface Tokens {
 
-    user: string
-
-}
 
 
 const Header = () => {
     const classes = useStyles();
 
     const cookies = parseCookies();
-    console.log(cookies)
-    const token: string | unknown | any   = cookies?.user;
+    
+    const token: string  | undefined | any   = cookies?.user;
 
     const user: Users = jwt(token)
 
