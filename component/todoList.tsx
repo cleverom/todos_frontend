@@ -112,9 +112,10 @@ interface Context{
                     (<List>
                         {todoList.map((item: Record<string, boolean> | any) => {
                             return (
-                                <ListItem className={classes.items} key={item?.id} button>
+                                <ListItem className={classes.items}  key={item?.id} button>
                                     <ListItemIcon >
                                         <Checkbox
+                                            data-cy="check"
                                             className={classes.items}
                                             key={item?.id}
                                             checked={item?.done}
@@ -123,13 +124,13 @@ interface Context{
                                         />
                                     </ListItemIcon>
 
-                                    <ListItemText primary={item?.todo} />
+                                    <ListItemText data-cy="list" primary={item?.todo} />
                                     <ListItemSecondaryAction>
                                         <IconButton edge="end" aria-label="edit" >
-                                            <EditIcon className={classes.items} onClick={() => handleClickOpen(item?.id)} />
+                                            <EditIcon className={classes.items} data-cy="edit" onClick={() => handleClickOpen(item?.id)} />
                                         </IconButton>
                                         <IconButton edge="end" aria-label="delete" >
-                                            <DeleteIcon className={classes.items} onClick={() => deleteSingleTodo(item?.id)} />
+                                            <DeleteIcon className={classes.items} data-cy="delete" onClick={() => deleteSingleTodo(item?.id)} />
                                         </IconButton>
                                     </ListItemSecondaryAction>
                                 </ListItem>

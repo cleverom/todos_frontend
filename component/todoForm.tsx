@@ -106,6 +106,7 @@ function form() {
                             <CardHeader
                                 subheader="Create a new task"
                                 title="Create Task"
+                                data-cy="h1"
                             />
                             <Divider />
                             <CardContent className={classes.cardContent}>
@@ -113,6 +114,7 @@ function form() {
                                     <Grid container spacing={3}>
                                         <TextField
                                             className={classes.todos}
+                                            data-cy="todo"
                                             fullWidth
                                             placeholder="Create new task"
                                             label="Enter task"
@@ -133,6 +135,7 @@ function form() {
                                         <TextField
 
                                             className={classes.dueDate}
+                                            data-cy="dueDate"
                                             fullWidth
                                             label="Due date"
                                             placeholder="YYYY-MM-DD"
@@ -154,7 +157,7 @@ function form() {
 
                             </CardContent>
                             <Box display='flex' justifyContent='center' p={2}>
-                                <Button color='primary' className={classes.createButton} variant="contained" type='submit' disabled={isSubmitting}>
+                                <Button color='primary' data-cy="btn" className={classes.createButton} variant="contained" type='submit' disabled={isSubmitting}>
                                     Create Todo
                                 </Button>
                             </Box>
