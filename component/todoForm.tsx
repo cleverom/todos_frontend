@@ -26,18 +26,18 @@ const useStyles = makeStyles({
 
     cardContent: {
         padding: 40,
-        
+
 
     },
     todos: {
-        // marginTop: '2rem',
+
         width: '100%',
-        // marginLeft: "22rem"
+
 
     },
     dueDate: {
         marginTop: '3rem',
-        // marginLeft: "22rem",
+
         width: '100%',
 
         justifyContent: 'center'
@@ -50,7 +50,7 @@ const useStyles = makeStyles({
         '@media (max-width: 768px)': {
             width: '100%'
         }
-        
+
 
 
     }
