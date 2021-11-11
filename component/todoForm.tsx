@@ -25,24 +25,33 @@ const useStyles = makeStyles({
     },
 
     cardContent: {
-        padding: 40
+        padding: 40,
+
 
     },
     todos: {
-        marginTop: '2rem',
-        width: '50%',
-        marginLeft: "22rem"
+
+        width: '100%',
+
 
     },
     dueDate: {
         marginTop: '3rem',
-        marginLeft: "22rem",
-        width: '50%',
+
+        width: '100%',
 
         justifyContent: 'center'
 
     },
-    createButton: {
+    texting: {
+        textAlign: 'center',
+        width: "50%",
+        margin: "0rem auto",
+        '@media (max-width: 768px)': {
+            width: '100%'
+        }
+
+
 
     }
 
@@ -110,8 +119,8 @@ function form() {
                             />
                             <Divider />
                             <CardContent className={classes.cardContent}>
-                                <Grid container spacing={3}>
-                                    <Grid container spacing={3}>
+                                <Grid className={classes.texting} container spacing={3}>
+                                    <Grid container >
                                         <TextField
                                             className={classes.todos}
                                             data-cy="todo"
@@ -131,7 +140,7 @@ function form() {
 
                                         </TextField>
                                     </Grid>
-                                    <Grid container spacing={3}>
+                                    <Grid container >
                                         <TextField
 
                                             className={classes.dueDate}
