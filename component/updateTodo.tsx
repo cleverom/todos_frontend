@@ -15,7 +15,7 @@ import { success, errors } from '../services/swal_alert'
 interface ITodoContextInterface {
     open: boolean,
     handleClickOpen: (id: string) => void;
-    handleClose:  (reason?: string | undefined) => void,
+    handleClose: (reason?: string | undefined | any) => void,
     todoId: string,
 }
 
@@ -72,10 +72,9 @@ export default function DialogSelect(props: ITodoContextInterface) {
         success(message)
         handleClose()
         getTodoData()
-        
+
 
     }
-
 
     return (
         <div>

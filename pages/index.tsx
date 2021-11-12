@@ -3,6 +3,7 @@ import { makeStyles } from '@mui/styles';
 import PrivateSection from './privateSection'
 import Login from './todoLogin'
 import {parseCookies} from '../services/request'
+import { CookiesProvider } from "react-cookie"
 
 const useStyles = makeStyles({
   root: {
@@ -27,9 +28,12 @@ const useStyles = makeStyles({
   }
   const classes = useStyles();
   return (
+    <CookiesProvider>
+
       <div className={classes.root}>
           <PrivateSection />
       </div>
+    </CookiesProvider>
   
   )
 }
